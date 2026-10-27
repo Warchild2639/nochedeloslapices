@@ -721,4 +721,39 @@ completarGalerias();
   }catch(err){}
  });
 })();
+
+/* YouTube oficial: reproducción integrada mediante IFrame Player API.
+   Puede usarse una playlist pública para cargar toda la música de una vez. */
+(function(){
+ const panel=document.querySelector('.tv-musica');if(!panel)return;
+ const extra=document.createElement('div');extra.className='tv-youtube';
+ extra.innerHTML='<div class="tv-youtube-fila"><label for="tv-yt-url">Playlist de YouTube</label><input id="tv-yt-url" type="url" placeholder="Pegá el enlace de la playlist"><button type="button" id="tv-yt-cargar">Cargar</button></div><div class="tv-yt-info">Una playlist pública permite reproducir todos los temas sin subir MP3.</div><div id="tv-yt-player"></div>';
+ panel.insertBefore(extra,panel.querySelector('.tv-estado'));
+ const estilo=document.createElement('style');estilo.textContent='.tv-youtube{margin-top:10px;border-top:1px solid #56636c;padding-top:10px}.tv-youtube-fila{display:flex;flex-wrap:wrap;align-items:center;gap:6px}.tv-youtube-fila label{font-size:12px;width:100%}.tv-youtube-fila input{flex:1;min-width:130px;max-width:100%;padding:8px;background:#f4e9d7;border:0;border-radius:5px;color:#1b2730;font-size:12px}.tv-youtube-fila button{padding:8px}.tv-yt-info{font-size:11px;color:#d8c2b5;margin:7px 0}.tv-youtube #tv-yt-player{width:100%;height:80px;overflow:hidden;border-radius:6px}.tv-musica.minimizada .tv-youtube{display:none}';document.head.appendChild(estilo);
+ let player=null,ready=false,listaId='',modoYT=false;
+ const info=extra.querySelector('.tv-yt-info');
+ function leerLista(url){try{const u=new URL(url);if(!/(^|\.)youtube\.com$|(^|\.)youtu\.be$/.test(u.hostname))return null;const id=u.searchParams.get('list');return id&&/^[a-zA-Z0-9_-]{10,80}$/.test(id)?id:null}catch{return null}}
+ function cargarLista(){
+  const id=leerLista(extra.querySelector('input').value);
+  if(!id){info.textContent='Pegá una URL válida de playlist pública de YouTube (debe contener list=...).';return}
+  listaId=id;modoYT=true;info.textContent='Cargando lista de YouTube…';
+  if(ready){player.loadPlaylist({listType:'playlist',list:id,index:0});return}
+  if(!document.querySelector('script[data-tv-youtube]')){
+   const s=document.createElement('script');s.src='https://www.youtube.com/iframe_api';s.dataset.tvYoutube='1';document.head.appendChild(s)
+  }
+ }
+ extra.querySelector('button').onclick=cargarLista;
+ window.onYouTubeIframeAPIReady=function(){
+  player=new YT.Player('tv-yt-player',{height:'80',width:'320',playerVars:{playsinline:1,controls:1,rel:0,origin:location.origin},events:{
+   onReady:()=>{ready=true;if(listaId)player.loadPlaylist({listType:'playlist',list:listaId,index:0})},
+   onStateChange:e=>{if(!modoYT)return;if(e.data===YT.PlayerState.PLAYING){const d=player.getVideoData();info.textContent='▶ '+(d.title||'Reproduciendo desde YouTube')}else if(e.data===YT.PlayerState.ENDED){info.textContent='Siguiente canción…'}},
+   onError:e=>{info.textContent='YouTube no permitió reproducir este video (error '+e.data+'). Podés avanzar desde el reproductor.'}
+  }});
+ };
+ const play=panel.querySelector('.tv-play'),prev=panel.querySelector('.tv-anterior'),next=panel.querySelector('.tv-siguiente');
+ play.addEventListener('click',e=>{if(!modoYT)return;e.stopImmediatePropagation();if(!ready){info.textContent='Esperá a que cargue YouTube.';return}if(player.getPlayerState()===YT.PlayerState.PLAYING)player.pauseVideo();else player.playVideo()},true);
+ prev.addEventListener('click',e=>{if(modoYT&&ready){e.stopImmediatePropagation();player.previousVideo()}},true);
+ next.addEventListener('click',e=>{if(modoYT&&ready){e.stopImmediatePropagation();player.nextVideo()}},true);
+ panel.querySelector('.tv-volumen').addEventListener('input',e=>{if(modoYT&&ready)player.setVolume(Number(e.target.value))});
+})();
 </script></body></html>
