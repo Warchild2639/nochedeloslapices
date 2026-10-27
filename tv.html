@@ -425,6 +425,18 @@ body.modo-tv .archivo-galeria .archivo-pieza{align-self:flex-start!important;hei
 body.modo-tv .archivo-galeria .archivo-pieza a.imagen{flex:none!important;height:auto!important;aspect-ratio:4/3!important;background:#eee5d6!important}
 body.modo-tv .archivo-galeria .archivo-pieza img{display:block!important;object-fit:contain!important;background:#eee5d6!important}
 body.modo-tv .archivo-galeria .archivo-pieza figcaption{flex:none!important;height:auto!important;min-height:0!important;margin:0!important;padding:8px 9px!important;background:#f3e9d6!important;color:#243647!important;overflow-wrap:anywhere!important}
+
+/* Reproductor flotante con portada de disco: sólo modo TV */
+.tv-musica{position:fixed;left:16px;bottom:16px;z-index:10002;width:min(355px,calc(100vw - 32px));color:#f4e8d4;background:#091c2cf5;border:1px solid #8e7162;border-radius:13px;box-shadow:0 8px 30px #0009;padding:12px;font-family:Arial,sans-serif}
+.tv-musica *{box-sizing:border-box}.tv-musica .tv-musica-arriba{display:flex;gap:12px;align-items:center}.tv-musica .tv-tapa{width:80px;height:80px;flex:none;object-fit:cover;background:#481a1b;border-radius:6px;border:1px solid #bcae95}
+.tv-musica .tv-titulos{min-width:0;flex:1}.tv-musica .tv-titulo{font-weight:700;font-size:14px;line-height:1.35}.tv-musica .tv-artista{font-size:12px;color:#d5bfb0;margin-top:5px}.tv-musica .tv-indice{font-size:11px;color:#d7b1a0;margin-top:7px}
+.tv-musica button,.tv-musica .tv-cargar{cursor:pointer;color:#f7e9d6;background:#243d50;border:1px solid #6e8794;border-radius:6px;padding:7px 9px;font-size:12px}
+.tv-musica button:hover,.tv-musica .tv-cargar:hover{background:#3b5364}.tv-musica .tv-botones{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-top:11px}.tv-musica .tv-botones button{flex:1}.tv-musica .tv-botones .tv-play{background:#a52e31;font-weight:bold}
+.tv-musica .tv-estado{font-size:11px;color:#e0c6b7;margin-top:8px;line-height:1.4}
+.tv-musica .tv-lista{display:none;max-height:230px;overflow:auto;margin-top:10px;border-top:1px solid #51616c;padding-top:6px}.tv-musica.abierta .tv-lista{display:block}.tv-musica .tv-lista button{display:block;text-align:left;width:100%;margin:3px 0;background:transparent;border:0;padding:7px;font-size:12px}.tv-musica .tv-lista button.activa{background:#643034}
+.tv-musica .tv-acciones{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:9px}.tv-musica .tv-cargar{display:inline-block}.tv-musica input[type=file]{display:none}.tv-musica .tv-volumen{width:90px;accent-color:#b83d3f}
+.tv-musica .tv-ocultar{position:absolute;right:8px;top:6px;border:0;background:transparent;padding:2px 5px}.tv-musica.minimizada{width:auto;padding:7px}.tv-musica.minimizada>*:not(.tv-ocultar){display:none}.tv-musica.minimizada .tv-ocultar{position:static}
+@media(max-width:650px){.tv-musica{left:8px;bottom:8px;width:min(310px,calc(100vw - 16px))}.tv-musica .tv-tapa{width:62px;height:62px}}
 </style></head><body>
 <header><img class="foto-portada-animada" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Ficha_Personal_de_la_alumna_Mar%C3%ADa_Claudia_Falcone%2C_desaparecida_de_la_denominada_Noche_de_los_L%C3%A1pices.jpg/1280px-Ficha_Personal_de_la_alumna_Mar%C3%ADa_Claudia_Falcone%2C_desaparecida_de_la_denominada_Noche_de_los_L%C3%A1pices.jpg" alt="" aria-hidden="true" fetchpriority="high"><div class="foto-historica" aria-hidden="true"></div><svg class="escritura-portada" viewBox="0 0 340 125" aria-hidden="true" focusable="false"><defs><linearGradient id="cuerpo-lapiz" x1="0" x2="1"><stop offset="0" stop-color="#9a6823"/><stop offset=".22" stop-color="#f5c658"/><stop offset=".65" stop-color="#e8a42b"/><stop offset="1" stop-color="#875923"/></linearGradient><filter id="sombra-lapiz" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="2"/></filter></defs><path id="recorrido-lapiz" d="M20 94 C65 71 81 116 127 86 S203 48 238 76 S287 97 320 47" fill="none" stroke="none"/><path class="tinta-escrita" d="M20 94 C65 71 81 116 127 86 S203 48 238 76 S287 97 320 47" pathLength="1000"/><g class="lapiz-movil"><animateMotion dur="9s" repeatCount="indefinite" rotate="auto" keyTimes="0;0.72;0.88;1" keyPoints="0;1;1;0" calcMode="linear"><mpath href="#recorrido-lapiz"/></animateMotion><g transform="rotate(-42)"><ellipse cx="-9" cy="-11" rx="12" ry="37" fill="#000" opacity=".25" filter="url(#sombra-lapiz)"/><path d="M0 0 L-8 -23 L8 -23 Z" fill="#d6af77" stroke="#8e6a44" stroke-width=".6"/><path d="M0 0 L-2.1 -6 L2.1 -6 Z" fill="#252c32"/><rect x="-8" y="-95" width="16" height="72" rx="2" fill="url(#cuerpo-lapiz)" stroke="#6d4a26" stroke-width=".7"/><path d="M-2 -94 L-2 -25" stroke="#fff2bc" stroke-width="1.3" opacity=".6"/><rect x="-8" y="-105" width="16" height="12" rx="2" fill="#c1c7c8" stroke="#858e92" stroke-width=".8"/><path d="M-8 -101 H8 M-8 -97 H8" stroke="#879294" stroke-width="1"/><rect x="-7" y="-116" width="14" height="12" rx="4" fill="#c7777d"/></g></g></svg><h1>La Noche de los Lápices</h1><p class="fecha">16 DE SEPTIEMBRE DE 1976</p><p class="bajada">En septiembre de 1976, estudiantes secundarios de La Plata fueron víctimas del terrorismo de Estado. Sus historias siguen presentes en cada generación que defiende la memoria, la democracia y los derechos humanos.</p><p class="lema-portada">MEMORIA · VERDAD · JUSTICIA</p><p class="escuela-portada">Escuela de Educación Media Nº 6 (Banfield)</p></header>
 <main class="container" id="contenido"><div class="escritorio-utiles" aria-hidden="true"><span class="util lapiz-rojo"></span><span class="util lapiz-azul"></span><span class="util lapiz-mostaza"></span><span class="util lapicera-negra"></span></div><article class="card visible"><div class="legajo-pila" aria-hidden="true"><span></span><span></span></div><div class="legajo-cinta" aria-hidden="true"></div><div class="legajo-etiqueta" aria-hidden="true">ARCHIVO HISTÓRICO · 1976</div><h2>Contexto histórico</h2><div class="archivo-decoracion" aria-hidden="true"><span class="archivo-hoja"></span><span class="archivo-clip"></span><span class="archivo-sello"><span class="sello-arco">CONTEXTO HISTÓRICO</span><span class="sello-centro">DICTADURA<br>1976</span><span class="sello-pie">ARGENTINA</span></span></div><div class="texto-desplegable"><p class="texto">En septiembre de 1976, la Argentina atravesaba los primeros meses de la última dictadura cívico-militar, iniciada con el golpe de Estado del 24 de marzo. Las Fuerzas Armadas, junto con sectores civiles que colaboraron con el régimen, instalaron un sistema de terrorismo de Estado que utilizó el secuestro, la tortura, la desaparición forzada y la censura para perseguir a quienes consideraban opositores. Las escuelas, universidades, fábricas y barrios no quedaron al margen de esa violencia. En La Plata existía una intensa participación juvenil: muchos estudiantes discutían problemas de su comunidad, se organizaban en centros de estudiantes y participaban en agrupaciones políticas. La represión buscó destruir esos espacios de organización y sembrar miedo en la sociedad. Comprender este contexto permite reconocer que las víctimas no fueron perseguidas por un hecho aislado, sino dentro de un plan sistemático de persecución política. Recordar esa historia también nos invita a valorar las libertades democráticas y el derecho de los jóvenes a expresarse, reunirse y participar.</p></div><button type="button" class="texto-toggle" aria-expanded="false"><span>Leer más</span><span class="texto-chevron" aria-hidden="true"></span></button><section class="archivo-galeria" aria-label="Galería documental"><h3 class="archivo-titulo">Archivo visual</h3><p class="archivo-nota">Documentos y fotografías de distintos años. Las fechas de cada pieza indican cuándo fue creada, no necesariamente cuándo ocurrieron los hechos narrados.</p><div class="archivo-carrusel"><button type="button" class="archivo-flecha" data-dir="-1" aria-label="Fotografías anteriores">‹</button><div class="archivo-grid"><figure class="archivo-pieza"><a class="imagen" href="https://commons.wikimedia.org/wiki/File:Ficha_Personal_de_la_alumna_Mar%C3%ADa_Claudia_Falcone%2C_desaparecida_de_la_denominada_Noche_de_los_L%C3%A1pices.jpg" target="_blank" rel="noopener noreferrer" aria-label="Abrir documento original: Ficha escolar de María Claudia Falcone (1974)"><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Ficha%20Personal%20de%20la%20alumna%20Mar%C3%ADa%20Claudia%20Falcone%2C%20desaparecida%20de%20la%20denominada%20Noche%20de%20los%20L%C3%A1pices.jpg?width=800" alt="Ficha escolar de María Claudia Falcone (1974)" onerror="this.closest('figure').style.display='none'"></a><figcaption>Ficha escolar de María Claudia Falcone (1974)<small>Universidad Nacional de La Plata · </small></figcaption></figure><figure class="archivo-pieza"><a class="imagen" href="https://commons.wikimedia.org/wiki/File:Volante_convocatoria_a_la_marcha_por_la_Noche_de_los_L%C3%A1pices_por_la_Coordinadora_de_Estudiantes_secundarios.jpg" target="_blank" rel="noopener noreferrer" aria-label="Abrir documento original: Volante de convocatoria estudiantil (2002)"><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Volante%20convocatoria%20a%20la%20marcha%20por%20la%20Noche%20de%20los%20L%C3%A1pices%20por%20la%20Coordinadora%20de%20Estudiantes%20secundarios.jpg?width=800" alt="Volante de convocatoria estudiantil (2002)" onerror="this.closest('figure').style.display='none'"></a><figcaption>Volante de convocatoria estudiantil (2002)<small>Archivo Histórico Zulma Totis · UNLP · </small></figcaption></figure></div><button type="button" class="archivo-flecha" data-dir="1" aria-label="Fotografías siguientes">›</button></div></section><div class="cinta"><span>Contexto histórico • Contexto histórico • Contexto histórico • Contexto histórico • Contexto histórico • Contexto histórico • Contexto histórico • Contexto histórico • Contexto histórico • Contexto histórico • Contexto histórico • Contexto histórico • Contexto histórico • Contexto histórico • </span></div></article>
@@ -641,5 +653,72 @@ completarGalerias();
   if(scrollY<15&&galerias.every(g=>mostradas.has(g)))galerias.forEach(g=>mostradas.delete(g));
  },900);
 
+})();
+
+/* Playlist para exposición: portadas consultadas online; audio local elegido por el operador. */
+(function(){
+ const temas=[
+ ['Canción para mi muerte','Sui Generis'],['Inconsciente colectivo','Charly García'],
+ ['Canción de Alicia en el país','Serú Girán'],['No bombardeen Buenos Aires','Charly García'],
+ ['Los dinosaurios','Charly García'],['Rasguña las piedras','Sui Generis'],
+ ['Todavía cantamos','Víctor Heredia'],['Sobreviviendo','Víctor Heredia'],
+ ['La marcha de la bronca','Pedro y Pablo'],['Como la cigarra','Mercedes Sosa'],
+ ['La memoria','León Gieco'],['Sólo le pido a Dios','León Gieco']
+ ];
+ const normal=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,' ').trim();
+ const fallback='data:image/svg+xml;charset=utf-8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240"><rect width="240" height="240" fill="#1e2029"/><path d="M20 35L220 205" stroke="#ae292e" stroke-width="15"/><text x="120" y="108" fill="#f1e2ca" text-anchor="middle" font-family="Georgia" font-size="24">LA NOCHE</text><text x="120" y="138" fill="#f1e2ca" text-anchor="middle" font-family="Georgia" font-size="20">DE LOS LÁPICES</text></svg>');
+ const panel=document.createElement('aside');panel.className='tv-musica';
+ panel.innerHTML='<button class="tv-ocultar" title="Minimizar reproductor">−</button><div class="tv-musica-arriba"><img class="tv-tapa" alt="Portada del disco"><div class="tv-titulos"><div class="tv-titulo"></div><div class="tv-artista"></div><div class="tv-indice"></div></div></div><div class="tv-botones"><button class="tv-anterior" title="Anterior">⏮</button><button class="tv-play" title="Reproducir o pausar">▶</button><button class="tv-siguiente" title="Siguiente">⏭</button><button class="tv-mostrar" title="Lista de canciones">☷ Lista</button></div><div class="tv-acciones"><label class="tv-cargar">♫ Cargar MP3<input type="file" multiple accept="audio/*,.mp3"></label><label style="font-size:12px">Vol. <input class="tv-volumen" type="range" min="0" max="100" value="75"></label></div><div class="tv-estado">Cargá tus MP3 para escuchar las canciones originales.</div><div class="tv-lista"></div>';
+ document.body.appendChild(panel);
+ const audio=new Audio();audio.volume=.75;audio.preload='auto';
+ let indice=0;const archivos=new Map(),portadas=new Map(),lista=panel.querySelector('.tv-lista');
+ function actualizar(){
+  const [titulo,artista]=temas[indice];
+  panel.querySelector('.tv-titulo').textContent=titulo;
+  panel.querySelector('.tv-artista').textContent=artista;
+  panel.querySelector('.tv-indice').textContent=(indice+1)+' / '+temas.length;
+  panel.querySelector('.tv-tapa').src=portadas.get(indice)||fallback;
+  panel.querySelector('.tv-play').textContent=audio.paused?'▶':'⏸';
+  lista.innerHTML='';
+  temas.forEach(([t,a],i)=>{const b=document.createElement('button');b.className=i===indice?'activa':'';b.textContent=(i+1)+'. '+t+' — '+a+(archivos.has(i)?' ✓':'');b.onclick=()=>seleccionar(i,true);lista.appendChild(b)});
+ }
+ function seleccionar(i,reproducir){
+  indice=(i+temas.length)%temas.length;
+  audio.pause();
+  const url=archivos.get(indice);
+  if(url){audio.src=url;audio.load();if(reproducir)audio.play().catch(()=>{});panel.querySelector('.tv-estado').textContent='Archivo cargado · Reproducción local'}
+  else{audio.removeAttribute('src');audio.load();panel.querySelector('.tv-estado').textContent='Falta cargar el MP3 de esta canción.'}
+  actualizar();
+ }
+ panel.querySelector('.tv-anterior').onclick=()=>seleccionar(indice-1,true);
+ panel.querySelector('.tv-siguiente').onclick=()=>seleccionar(indice+1,true);
+ panel.querySelector('.tv-play').onclick=()=>{if(!archivos.has(indice)){panel.querySelector('.tv-estado').textContent='Primero cargá el MP3 de esta canción.';return}if(audio.paused)audio.play().catch(()=>{});else audio.pause();actualizar()};
+ panel.querySelector('.tv-mostrar').onclick=()=>panel.classList.toggle('abierta');
+ panel.querySelector('.tv-volumen').oninput=e=>audio.volume=Number(e.target.value)/100;
+ panel.querySelector('.tv-ocultar').onclick=()=>{panel.classList.toggle('minimizada');panel.querySelector('.tv-ocultar').textContent=panel.classList.contains('minimizada')?'♫ Música':'−'};
+ panel.querySelector('input[type=file]').onchange=e=>{
+  for(const file of e.target.files){
+   const nombre=normal(file.name.replace(/\.[^.]+$/,''));
+   let i=temas.findIndex(([t,a])=>nombre.includes(normal(t))||normal(t).includes(nombre));
+   if(i<0)i=temas.findIndex(([t,a])=>nombre.includes(normal(a))&&nombre.includes(normal(t).split(' ')[0]));
+   if(i>=0){if(archivos.has(i))URL.revokeObjectURL(archivos.get(i));archivos.set(i,URL.createObjectURL(file))}
+  }
+  panel.querySelector('.tv-estado').textContent=archivos.size+' de '+temas.length+' canciones cargadas. Seleccioná ▶ para comenzar.';
+  seleccionar(indice,false);
+ };
+ audio.onended=()=>seleccionar(indice+1,true);
+ audio.onplay=actualizar;audio.onpause=actualizar;
+ actualizar();
+ // Las portadas son una mejora visual: si no hay resultados se muestra la carátula de respaldo.
+ temas.forEach(async([titulo,artista],i)=>{
+  try{
+   const q=encodeURIComponent(titulo+' '+artista);
+   const res=await fetch('https://itunes.apple.com/search?term='+q+'&entity=song&limit=12');
+   if(!res.ok)return;
+   const data=await res.json();
+   const match=(data.results||[]).find(r=>normal(r.trackName||'').includes(normal(titulo))&&normal(r.artistName||'').includes(normal(artista).split(' ')[0]));
+   if(match?.artworkUrl100){portadas.set(i,match.artworkUrl100.replace('100x100bb','600x600bb'));if(i===indice)actualizar()}
+  }catch(err){}
+ });
 })();
 </script></body></html>
